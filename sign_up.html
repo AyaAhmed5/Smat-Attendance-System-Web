@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/sign_up.css">
+</head>
+<body>
+    
+    <div class="container">
+        <h1>SIGN UP</h1>
+        <hr>
+        <form class="row g-3 needs-validation" id="signupForm" novalidate>
+            <div class="col-md-6">
+                <label for="validationCustom01" class="form-label">Frist name</label>
+                <input type="text" class="form-control" id="validationCustom01" value="" required>
+                <div class="valid-feedback">
+                  Looks good!
+                </div>
+              </div>
+              
+              <div class="col-md-6">
+                <label for="validationCustom02" class="form-label">Last name</label>
+                <input type="text" class="form-control" id="validationCustom02" value="" required>
+                <div class="valid-feedback">
+                  Looks good!
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <label for="validationCustom03" class="form-label">User name</label>
+                <input type="text" class="form-control" id="validationCustom03" value="" required>
+                <div class="valid-feedback">
+                  Looks good!
+                </div>
+              </div>
+  
+              <div class="col-md-6">
+                <label for="validationCustomUsername" class="form-label">Email</label>
+                <div class="input-group has-validation">
+                  <span class="input-group-text" id="inputGroupPrepend">@</span>
+                  <input type="email" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+                  <div class="invalid-feedback">
+                    Please choose a valied Email.
+                  </div>
+                </div>
+              </div>
+  
+             
+              <!-- <div class="col-md-6">
+                <label for="validationCustom04" class="form-label">State</label>
+                <select class="form-select" id="validationCustom04" required>
+                  <option selected  value="Doctor">Doctor</option>
+                  <option value="Teaching Assistant">Teaching Assistant</option>
+                </select>
+                <div class="invalid-feedback">
+                  Please select a valid state.
+                </div>
+              </div> -->
+  
+              <div class="col-md-6">
+                <label for="validationCustom04" class="form-label">Password</label>
+                <input type="password" class="form-control" id="validationCustom04" required>
+                <div class="invalid-feedback">
+                  Must be password with at least 8 characters including numbers, uppercase, and lowercase letters
+                </div>
+              </div>
+  
+              <div class="col-md-6">
+                <label for="validationCustom05" class="form-label">Comfirm Password</label>
+                <input type="password" class="form-control" id="validationCustom05" required>
+                <div class="invalid-feedback">
+                  Confirm password not match password
+                </div>
+              </div>
+      
+
+              <!-- <div class="col-6">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                  <label class="form-check-label" for="invalidCheck">
+                    <a href="###" target="_blank" style="text-decoration: none;">Agree to terms and conditions</a>
+                  </label>
+                  <div class="invalid-feedback">
+                    You must agree before submitting.
+                  </div>
+                </div>
+              </div> -->
+  
+              <div class="Remember col-6">
+                <input class="form-check-input" type="checkbox" value="" id="invalidCheck2">
+                  <label class="form-check-label" style="color: white;" for="invalidCheck2">
+                    Remember Password
+                  </label>
+              </div>
+  
+  
+              <div class="col-12">
+                <button class="btn submit-btn-contact rounded-pill"  type="submit">Sign up</button>
+              </div>
+  
+  
+              <div class="login col-12" style="color: white;">
+                Already have account?
+                <a href="./log_in.html" style="text-decoration: none;">log in</a>
+              </div>
+        </form>
+    </div>
+
+
+    <script>
+      document.getElementById('signupForm').addEventListener('submit', async function(event) {
+          event.preventDefault(); // Prevent default form submission
+  
+          // Collect form data
+          const formData = {
+                firstName: document.getElementById('validationCustom01').value,
+                lastName: document.getElementById('validationCustom02').value,
+                email: document.getElementById('validationCustomUsername').value,
+                username: document.getElementById('validationCustom03').value,
+                password: document.getElementById('validationCustom04').value,
+                confirmPassword: document.getElementById('validationCustom05').value
+                // Add more fields as needed
+            };
+            
+            // Password validation regex
+            const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+
+            // Email validation regex
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            // Username validation regex
+            const usernameRegex = /^[a-zA-Z0-9]+$/;
+
+            // Check if password meets criteria
+            if (!passwordRegex.test(formData.password)) {
+                document.getElementById('validationCustom04').classList.add('is-invalid');
+                return;
+            } else {
+                document.getElementById('validationCustom04').classList.remove('is-invalid');
+            }
+
+            // Check if confirm password matches password
+            if (formData.password !== formData.confirmPassword) {
+                document.getElementById('validationCustom05').classList.add('is-invalid');
+                return;
+            } else {
+                document.getElementById('validationCustom05').classList.remove('is-invalid');
+            }
+
+            // Check if email is valid
+            if (!emailRegex.test(formData.email)) {
+                document.getElementById('validationCustomUsername').classList.add('is-invalid');
+                return;
+            } else {
+                document.getElementById('validationCustomUsername').classList.remove('is-invalid');
+            }
+
+            // Check if username is valid
+            if (!usernameRegex.test(formData.username)) {
+                document.getElementById('validationCustom03').classList.add('is-invalid');
+                return;
+            } else {
+                document.getElementById('validationCustom03').classList.remove('is-invalid');
+            }
+
+            // Check if first name starts with an uppercase letter
+            // if (formData.firstName.charAt(0) !== formData.firstName.charAt(0).toUpperCase()) {
+            //     document.getElementById('validationCustom01').classList.add('is-invalid');
+            //     return;
+            // } else {
+            //     document.getElementById('validationCustom01').classList.remove('is-invalid');
+            // }
+
+          try {
+              // Send data to the API for signup
+              const response = await fetch('http://testyasmeenasp2-001-site1.etempurl.com/api/Auth/SignUpProfessor', {
+                  method: 'POST',
+                  headers: {
+                      'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify(formData)
+              });
+  
+              if (response.ok) {
+                  // Store first name and last name in local storage
+                  localStorage.setItem('firstName', formData.firstName);
+                  localStorage.setItem('lastName', formData.lastName);
+  
+                  // Redirect to login page
+                  window.location.href = 'log_in.html';
+              } else {
+                  // Handle other HTTP errors
+                  console.error('HTTP Error:', response.status);
+              }
+          } catch (error) {
+              // Handle network errors or any other unexpected errors
+              console.error('Error:', error);
+          }
+      });
+  </script>
+  
+
+    <!-- <script>
+        document.getElementById('signupForm').addEventListener('submit', async function(event) {
+            event.preventDefault(); // Prevent default form submission
+    
+            // Collect form data
+            const formData = {
+                firstName: document.getElementById('validationCustom01').value,
+                lastName: document.getElementById('validationCustom02').value,
+                email: document.getElementById('validationCustomUsername').value,
+                username: document.getElementById('validationCustom03').value,
+                password: document.getElementById('validationCustom04').value,
+                confirmPassword: document.getElementById('validationCustom05').value
+                // Add more fields as needed
+            };
+    
+            try {
+                // Send data to the API
+                const response = await fetch('http://testyasmeenasp2-001-site1.etempurl.com/api/Auth/SignUpProfessor', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+    
+                if (response.ok) {
+                    // Handle successful signup
+                    window.location.href = 'log_in.html';
+                } else {
+                    // Handle other HTTP errors
+                    console.error('HTTP Error:', response.status);
+                }
+            } catch (error) {
+                // Handle network errors or any other unexpected errors
+                console.error('Error:', error);
+            }
+        });
+    </script> -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>
